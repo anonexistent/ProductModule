@@ -1,0 +1,1 @@
+docker build -t efirit-product-module:0.27 .

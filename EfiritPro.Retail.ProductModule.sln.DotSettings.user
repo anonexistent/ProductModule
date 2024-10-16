@@ -1,0 +1,6 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Folegprotasov_002FDocuments_002F_0420_0430_0431_043E_0442_0430_002FEtherIT_002FEfiritPro_002ERetail_002EProductModule_002FRetailAuth_002FEfiritPro_002ERetail_002EAuthModule_002ERetailAuth_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
+  &lt;Assembly Path="/Users/olegprotasov/.nuget/packages/efiritpro.retail.packages.rabbitmodule/0.1.0/lib/net7.0/EfiritPro.Retail.Packages.RabbitModule.dll" /&gt;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Efirit/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

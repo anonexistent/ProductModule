@@ -1,0 +1,61 @@
+services:
+  app:
+    container_name: product-module
+    ports:
+      - ${PRODUCT_MODULE_PORT}:${PRODUCT_MODULE_PORT}
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    stop_grace_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 512M 
+    environment:
+      ASPNETCORE_URLS: ${PRODUCT_MODULE_URLS}
+      PRODUCT_DB: "host=product-module-db;port=5432;database=${PRODUCT_MODULE_DB_NAME};username=${PRODUCT_MODULE_DB_USER};password=${PRODUCT_MODULE_DB_PWD}"
+
+      GRAFANA_LOKI_PATH: ${GRAFANA_LOKI_PATH}
+
+      RABBIT_USER_NAME: ${RABBIT_USER_NAME}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+      RABBIT_VIRT_HOST: ${RABBIT_VIRT_HOST}
+      RABBIT_HOST_NAME: ${RABBIT_HOST_NAME}
+      RABBIT_HOST_PORT: ${RABBIT_HOST_PORT}
+
+      RABBIT_PROVIDED_NAME: ${PRODUCT_MODULE_RABBIT_PROVIDED_NAME}
+      RABBIT_ACK_QUEUE: ${PRODUCT_MODULE_RABBIT_ACK_QUEUE}
+      RABBIT_LISTENED_QUEUES: ${PRODUCT_MODULE_RABBIT_LISTENED_QUEUES}
+
+      ORIGINS: ${COMMON_ORIGINS}
+    networks:
+      - default-net
+      - db-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+  
+  postgres:
+    container_name: product-module-db
+    image: postgres:${POSTGRES_VERSION}
+    ports:
+      - "5432"
+    restart: always
+    stop_grace_period: 10s 
+    volumes:
+      - back-end_product-module-db-vol:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${AUTH_MODULE_DB_NAME}
+      POSTGRES_USER: ${AUTH_MODULE_DB_USER}
+      POSTGRES_PASSWORD: ${AUTH_MODULE_DB_PWD}
+    networks:
+      - db-network
+
+networks:
+  default-net:
+    external: true
+  db-network:
+
+volumes:
+  back-end_product-module-db-vol:
+    external: true
